@@ -63,12 +63,12 @@ def show_status():
             set_wan_table(user_ip,table_id)
             print(user_ip,table_id)
         user_table = get_wan_table_by_ip(user_ip)
-        out_buf  = "<h1>Wan switch</h1>\n";
+        out_buf  = "<html><head><meta name=\"viewport\" content=\"initial-scale=1\"></head><body><h1>Wan switch</h1>\n";
         out_buf += "Your IP is {}<br>".format(escape(user_ip.compressed))
         out_buf += "<form method=\"POST\">"
         for table_id, table_name in CONFIG['wan'].items():
             out_buf += "<input type=\"radio\" name=\"table_id\" id=\"table_id\" value=\"{}\" {}>{}</input> <br>\n".format(table_id,"checked" if table_id == user_table else "",escape(table_name))
-        out_buf += "<input type=\"submit\"></form>"
+        out_buf += "<input type=\"submit\"></form></body></html>"
         return out_buf
     else:
         return "403 Forbidden", 403
